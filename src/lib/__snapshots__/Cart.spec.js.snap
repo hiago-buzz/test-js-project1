@@ -21,3 +21,25 @@ exports[`Cart checkout should return an object with the total and the list of it
   "total": 24000,
 }
 `;
+
+exports[`Cart checkout should return an object with the total and the list of items when sumary() is called 1`] = `
+{
+  "items": [
+    {
+      "product": {
+        "price": 2000,
+        "title": "Adidas tennis",
+      },
+      "quantity": 2,
+    },
+    {
+      "product": {
+        "price": 4000,
+        "title": "Nike tennis",
+      },
+      "quantity": 5,
+    },
+  ],
+  "total": 24000,
+}
+`;
