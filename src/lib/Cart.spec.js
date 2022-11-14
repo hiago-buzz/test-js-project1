@@ -117,6 +117,20 @@ describe('Cart', () => {
       expect(cart.getTotal().getAmount()).toEqual(4200);
     });
 
+    it('should NOT apply percentage discount quantity is below or equals minimum', () => {
+      const condition = {
+        percentage: 30,
+        minimum: 2,
+      };
+      cart.add({
+        product,
+        condition,
+        quantity: 2,
+      });
+
+      expect(cart.getTotal().getAmount()).toEqual(4000);
+    });
+
     it('should apply quantity discount for even quantities', () => {
       const condition = {
         quantity: 2,
@@ -128,6 +142,32 @@ describe('Cart', () => {
       });
 
       expect(cart.getTotal().getAmount()).toEqual(4000);
+    });
+
+    it('should  NOT apply quantity is below or equals minimum', () => {
+      const condition = {
+        quantity: 2,
+      };
+      cart.add({
+        product,
+        condition,
+        quantity: 1,
+      });
+
+      expect(cart.getTotal().getAmount()).toEqual(2000);
+    });
+
+    it('should apply quantity discount for odd quantities', () => {
+      const condition = {
+        quantity: 2,
+      };
+      cart.add({
+        product,
+        condition,
+        quantity: 5,
+      });
+
+      expect(cart.getTotal().getAmount()).toEqual(6000);
     });
   });
 });
